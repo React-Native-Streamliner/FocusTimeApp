@@ -1,17 +1,16 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import Constants from 'expo-constants';
 
 export default function App() {
   return (
-    <View style={styles.container}>
+    <SafeAreaView>
       <Text>Hello worlds</Text>
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 50,
   },
 });
