@@ -1,13 +1,14 @@
-import { SafeAreaView, StyleSheet, Platform, StatusBar } from 'react-native';
-import Constants from 'expo-constants';
+import { SafeAreaView, View, Text, StyleSheet, Platform, StatusBar } from 'react-native';
+//import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-view';
 import { colors } from './src/utils/colors';
-import { Focus } from './src/features/Focus';
+import Focus from './src/features/Focus';
+//import { TextInput } from 'react-native-paper';
 
 export default function App() {
   return (
-    <SafeAreaView style={styles.container}>
-      <Focus />
-    </SafeAreaView>
+      <SafeAreaView style={styles.container}>
+        <Focus />
+      </SafeAreaView>
   );
 }
 
