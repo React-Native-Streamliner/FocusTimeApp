@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { SafeAreaView, View, Text, StyleSheet, Platform, StatusBar } from 'react-native';
-//import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-view';
+import { SafeAreaView, StyleSheet, Platform, StatusBar } from 'react-native';
 import { colors } from './src/utils/colors';
 import Focus from './src/features/Focus';
-//import { TextInput } from 'react-native-paper';
+import Timer from './src/components/Timer';
 
 export default function App() {
   const [ currentSubject, setCurrentSubject ] = useState(null)
@@ -11,7 +10,11 @@ export default function App() {
       <SafeAreaView style={styles.container}>
         {!currentSubject 
           ? <Focus addSubject={setCurrentSubject}/> 
-          : <View><Text style={styles.textStyle}>I am going to render the timer for {currentSubject}</Text></View>}
+          : <Timer 
+              focusSubject={currentSubject}
+              onTimerEnd={() => {}}
+              clearSubject={() => {}}
+            />}
       </SafeAreaView>
   );
 }
