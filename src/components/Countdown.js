@@ -41,11 +41,11 @@ export const Countdown = ({ minutes = 0.1, isPaused, onProgress, onEnd }) => {
         return () => clearInterval(interval.current);
     }, [isPaused]);
 
-    const minutes = Math.floor(millis / 1000 / 60) % 60;
+    const minute = Math.floor(millis / 1000 / 60) % 60;
     const seconds = Math.floor(millis / 1000) % 60;
     return (
         <Text style={styles.text}>
-            {formatTime(minutes)}:{formatTime(seconds)}
+            {formatTime(minute)}:{formatTime(seconds)}
         </Text>
     )
 };
