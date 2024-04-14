@@ -5,6 +5,7 @@ import { RoundedButton } from "./RoundedButton";
 import { spacing } from "../utils/sizes";
 import { colors } from "../utils/colors";
 import { ProgressBar } from "react-native-paper";
+import { Timing } from "./Timing";
 
 const ONE_SECOND_IN_MS = 1000;
 const PATTERN = [
@@ -42,9 +43,15 @@ const Timer = ({ focusSubject, onTimerEnd, clearSubject }) => {
                     style={{ height: spacing.sm }}
                 />
             </View>
+            <View style={styles.timingWrapper}>
+                <Timing onChangeTime={setMinutes} />
+            </View>
             <View style={styles.buttonWrapper}>
                 {!isStarted && (<RoundedButton title='Start' onPress={() => setIsStarted(true)}/>)}
                 {isStarted && (<RoundedButton title='Pause' onPress={() => setIsStarted(false)}/>)}
+            </View>
+            <View style={styles.clearSubjectWrapper}>
+                <RoundedButton size={50} title="-" onPress={clearSubject} />
             </View>
         </View>
     );
@@ -53,7 +60,6 @@ const Timer = ({ focusSubject, onTimerEnd, clearSubject }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-
     },
     countdown: {
         flex: 0.5,
@@ -63,9 +69,13 @@ const styles = StyleSheet.create({
     buttonWrapper: {
         flex: 0.3,
         flexDirection: 'row',
-        padding: 15,
+        padding: spacing.md,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    clearSubjectWrapper: {
+        flexDirection: 'row',
+        justifyContent: 'center'
     },
     title: {
         color: colors.white,
@@ -75,6 +85,11 @@ const styles = StyleSheet.create({
     task: {
         color: colors.white,
         textAlign: 'center'
+    },
+    timingWrapper: {
+        flex: 0.1,
+        paddingTop: spacing.xxl,
+        flexDirection: 'row'
     }
 });
 
