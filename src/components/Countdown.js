@@ -11,11 +11,13 @@ export const Countdown = ({ minutes = 0.1, isPaused, onProgress, onEnd }) => {
 
     const [ millis, setMills ] = useState(null);
 
+    const reset = () => setMills(minutesToMillis(minutes));
+
     const countdown = () => {
         setMills((time) => {
             if (time == 0) {
                 clearInterval(interval.current);
-                onEnd();
+                onEnd(reset);
                 return time;
             }
             const timeLeft = time - 1000;

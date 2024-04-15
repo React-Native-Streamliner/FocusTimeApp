@@ -21,15 +21,20 @@ const Timer = ({ focusSubject, onTimerEnd, clearSubject }) => {
     const [ progress, setProgress ] = useState(1);
     const [minutes, setMinutes ] = useState(0.1);
 
+    const onEnd = (reset) => {
+        Vibration.vibrate(PATTERN);
+        setIsStarted(false);
+        setProgress(1);
+        reset();
+    };
+
     return (
         <View style={styles.container}>
             <View style={styles.countdown}>
                 <Countdown 
                     isPaused={!isStarted}
                     onProgress={setProgress}
-                    onEnd={() => {
-                        Vibration.vibrate(PATTERN)
-                    }}
+                    onEnd={onEnd}
                 />
                 <View style={{paddingTop: spacing.xxl}}>
                     <Text style={styles.title}>Focusing on:</Text>
@@ -51,7 +56,7 @@ const Timer = ({ focusSubject, onTimerEnd, clearSubject }) => {
                 {isStarted && (<RoundedButton title='Pause' onPress={() => setIsStarted(false)}/>)}
             </View>
             <View style={styles.clearSubjectWrapper}>
-                <RoundedButton size={50} title="-" onPress={clearSubject} />
+                <RoundedButton size={50} title="-" onPress={clearSubject    } />
             </View>
         </View>
     );
