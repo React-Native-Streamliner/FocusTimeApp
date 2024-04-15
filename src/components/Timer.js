@@ -5,7 +5,7 @@ import { RoundedButton } from "./RoundedButton";
 import { spacing } from "../utils/sizes";
 import { colors } from "../utils/colors";
 import { ProgressBar } from "react-native-paper";
-import { Timing } from "./Timing";
+import Timing from "./Timing";
 
 const ONE_SECOND_IN_MS = 1000;
 const PATTERN = [
@@ -32,6 +32,7 @@ const Timer = ({ focusSubject, onTimerEnd, clearSubject }) => {
         <View style={styles.container}>
             <View style={styles.countdown}>
                 <Countdown 
+                    minutes={minutes}
                     isPaused={!isStarted}
                     onProgress={setProgress}
                     onEnd={onEnd}
