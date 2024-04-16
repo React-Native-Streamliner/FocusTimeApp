@@ -16,10 +16,10 @@ const PATTERN = [
     1 * ONE_SECOND_IN_MS
 ];
 
-const Timer = ({ focusSubject, onTimerEnd, clearSubject }) => {
+const Timer = ({ focusSubject, clearSubject }) => {
     const [ isStarted, setIsStarted ] = useState(false);
     const [ progress, setProgress ] = useState(1);
-    const [minutes, setMinutes ] = useState(0.1);
+    const [ minutes, setMinutes ] = useState(0.1);
 
     const onEnd = (reset) => {
         Vibration.vibrate(PATTERN);
@@ -27,7 +27,7 @@ const Timer = ({ focusSubject, onTimerEnd, clearSubject }) => {
         setProgress(1);
         reset();
     };
-
+    console.log(`dbg: progress=${progress}`);
     return (
         <View style={styles.container}>
             <View style={styles.countdown}>

@@ -11,18 +11,8 @@ export const Countdown = ({ minutes = 0.1, isPaused, onProgress, onEnd }) => {
 
     const [ millis, setMills ] = useState(null);
 
-    const reset = () => setMills(minutesToMillis(minutes));
-
-    const countdown = () => {
-        setMills((time) => {
-            if (time == 0) {
-                clearInterval(interval.current);
-                onEnd(reset);
-                return time;
-            }
-            const timeLeft = time - 1000;
-            return timeLeft;
-        });
+    const reset = () => {
+        setMills(minutesToMillis(minutes));
     };
 
     useEffect(() => {
@@ -39,12 +29,23 @@ export const Countdown = ({ minutes = 0.1, isPaused, onProgress, onEnd }) => {
             return;
         }
 
-        interval.current = setInterval(countdown, 1000);
+        interval.current = setInterval(() => {
+            setMills((time) => {
+                if (time === 0) {
+                    onEnd(reset);
+                    clearInterval(interval.current);
+                    return minutesToMillis(minutes); // return here converted time minutesToMillis
+                }
+                return time - 1000;
+            });
+        }, 1000);
+
         return () => clearInterval(interval.current);
     }, [isPaused]);
 
     const minute = Math.floor(millis / 1000 / 60) % 60;
     const seconds = Math.floor(millis / 1000) % 60;
+    console.log(`dbg: minute= ${minute}, seconds=${seconds}`);
     return (
         <Text style={styles.text}>
             {formatTime(minute)}:{formatTime(seconds)}
