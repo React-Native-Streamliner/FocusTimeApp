@@ -17,7 +17,7 @@ const PATTERN = [
     1 * ONE_SECOND_IN_MS
 ];
 
-const Timer = ({ focusSubject, clearSubject }) => {
+const Timer = ({ focusSubject, onTimerEnd, clearSubject }) => {
     useKeepAwake();
     const [ isStarted, setIsStarted ] = useState(false);
     const [ progress, setProgress ] = useState(1);
@@ -28,6 +28,7 @@ const Timer = ({ focusSubject, clearSubject }) => {
         setIsStarted(false);
         setProgress(1);
         reset();
+        onTimerEndf(focusSubject);
     };
     console.log(`dbg: progress=${progress}`);
     return (
